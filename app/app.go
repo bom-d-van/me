@@ -11,7 +11,6 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
-	"syscall"
 	"time"
 )
 
@@ -20,10 +19,44 @@ var (
 	thoughtsPath = pkgPath + "/thoughts"
 	log          = configs.Log
 	apptmpl      *template.Template
+	creationInfo = map[string]time.Time{}
+	timeNow      = time.Now()
 )
 
 func init() {
 	mustParseViews()
+	creationInfoBytes, err := ioutil.ReadFile(pkgPath + "/thoughts_creation_file.txt")
+	if err != nil {
+		log.Panic(err)
+	}
+
+	println("something")
+	for _, item := range strings.Split(string(creationInfoBytes), "\n") {
+		if item == "" {
+			continue
+		}
+		segs := strings.Split(item, "://")
+		if len(segs) != 2 {
+			log.Panic(item + " Is Illegal Format.")
+		}
+		tim, err := time.Parse("01/02/2006 15:04:05", segs[1])
+		if err != nil {
+			log.Panic(err)
+		}
+		log.Println(tim)
+		creationInfo[segs[0]] = tim
+	}
+}
+
+func genCreationTime(path string) time.Time {
+	path = strings.Replace(path, thoughtsPath, "", 1)
+	tim, ok := creationInfo[path]
+	if !ok {
+		tim = timeNow
+	}
+	log.Println(tim)
+
+	return tim
 }
 
 func GetArticle(params martini.Params) string {
@@ -68,14 +101,8 @@ func GetArticle(params martini.Params) string {
 		Mod:     info.ModTime(),
 	}
 
-	sys := info.Sys()
-	if sys != nil {
-		stat := sys.(*syscall.Stat_t)
-		thoughtData.Cre = time.Unix(stat.Ctimespec.Sec, stat.Ctimespec.Nsec)
-	} else {
-		thoughtData.Cre = info.ModTime()
-	}
-
+	log.Println(artilePath)
+	thoughtData.Cre = genCreationTime(artilePath)
 	thoughtData.NoMod = thoughtData.Cre.Format(atFmt) != thoughtData.Mod.Format(atFmt)
 
 	return genPage("thought", thoughtData)
@@ -86,7 +113,7 @@ func getTitle(name string) string {
 }
 
 type thought struct {
-	Path  string
+	// Path  string
 	Name  string
 	Title string
 	Mod   time.Time
@@ -146,7 +173,8 @@ func GetThoughts() string {
 
 		t := thought{}
 		if info.IsDir() {
-			info, err = os.Stat(path + "/index.md")
+			path = path + "/index.md"
+			info, err = os.Stat(path)
 			if err != nil {
 				return err
 			}
@@ -157,14 +185,7 @@ func GetThoughts() string {
 
 		t.Title = getTitle(t.Name)
 		t.Mod = info.ModTime()
-
-		sys := info.Sys()
-		if sys != nil {
-			stat := sys.(*syscall.Stat_t)
-			t.Cre = time.Unix(stat.Ctimespec.Sec, stat.Ctimespec.Nsec)
-		} else {
-			t.Cre = t.Mod
-		}
+		t.Cre = genCreationTime(path)
 
 		thoughts = append(thoughts, t)
 
