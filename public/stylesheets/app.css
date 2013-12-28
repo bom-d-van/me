@@ -92,8 +92,10 @@ article.thoughts ul {
 
 .edit-info {
 	float: right;
-	width: 225px;
+	width: 185px;
 	color: #666;
+	margin-top: 30px;
+	font-size: 13px;
 }
 
 .edit-info .info-label {

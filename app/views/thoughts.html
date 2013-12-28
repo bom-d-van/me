@@ -19,7 +19,7 @@
 				<h2>{{$year}}</h2>
 				{{range $t := index $thoughtMap $year}}
 					<li>
-						<span>{{fmtOn $t.Cre}}</span>
+						<span>{{fmtOn $t.Cre}}&nbsp;&nbsp;&nbsp;</span>
 						<span><a href="/thoughts/{{$t.Name}}">{{$t.Title}}</a></span>
 					</li>
 				{{end}}
