@@ -41,7 +41,7 @@ article pre code {
 }
 
 article img {
-	width: 99%;
+	max-width: 99%;
 	border: solid 1px #444;
 }
 
