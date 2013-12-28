@@ -61,20 +61,22 @@ func GetArticle(params martini.Params) string {
 		Title   string
 		Cre     time.Time
 		Mod     time.Time
+		NoMod   bool
 	}{
 		Content: html,
 		Title:   getTitle(name),
+		Mod:     info.ModTime(),
 	}
 
 	sys := info.Sys()
 	if sys != nil {
 		stat := sys.(*syscall.Stat_t)
 		thoughtData.Cre = time.Unix(stat.Ctimespec.Sec, stat.Ctimespec.Nsec)
-		thoughtData.Mod = info.ModTime()
 	} else {
 		thoughtData.Cre = info.ModTime()
-		// thoughtData.Mod = nil
 	}
+
+	thoughtData.NoMod = thoughtData.Cre.Format(atFmt) != thoughtData.Mod.Format(atFmt)
 
 	return genPage("thought", thoughtData)
 }
@@ -213,6 +215,8 @@ func genPage(tmpl string, data interface{}) string {
 	return buf.String()
 }
 
+var atFmt = "Mon Jan 2 15:04"
+
 func mustParseViews() {
 	var err error
 	apptmpl = template.New("MeTmpl")
@@ -221,7 +225,7 @@ func mustParseViews() {
 			return tim.Format("Mon Jan 2")
 		},
 		"fmtAt": func(tim time.Time) string {
-			return tim.Format("Mon Jan 2 15:04")
+			return tim.Format(atFmt)
 		},
 	})
 	apptmpl, err = apptmpl.ParseGlob(pkgPath + "/app/views/*.html")

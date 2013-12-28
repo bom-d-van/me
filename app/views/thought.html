@@ -11,10 +11,10 @@
 </head>
 <body>
 	<article>
-		{{template "float_me"}}
+		{{template "info_block"}}
 		<section class="edit-info">
 			<div><span class="fl info-label">Wrote At: </span><span class="fr">{{fmtAt .Cre}}</span></div>
-			{{if .Mod}}<div><span class="fl info-label">Modified At: </span><span class="fr">{{fmtAt .Mod}}</span></div>{{end}}
+			{{if .NoMod}}<div><span class="fl info-label">Modified At: </span><span class="fr">{{fmtAt .Mod}}</span></div>{{end}}
 		</section>
 		{{.Content}}
 	</article>

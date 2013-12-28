@@ -1,4 +1,4 @@
 .DS_Store
-deploy.sh
+publish.sh
 server.sh
 env.go
