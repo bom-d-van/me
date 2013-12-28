@@ -4,7 +4,7 @@
 
 Finally, my personal blog was official done. It's one day work, but it's so very satisfing. Bellow are some of Tests.
 
-This website is build in the power of [golang](http://golang.org). It's very simple and very small. Write your acticles in a code editor or a markdown editor, then save it, publish it, which means push your changes to a git repository then redeploy your server, then it's done.
+This website is build by the power of [golang](http://golang.org). It's very simple and very small. Write your acticles in a code editor or a markdown editor, then save it, publish it, which means push your changes to a git repository then redeploy your server, then it's done.
 
 ## Heads
 ### Heads
