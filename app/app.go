@@ -113,11 +113,9 @@ func getTitle(name string) string {
 }
 
 type thought struct {
-	// Path  string
 	Name  string
 	Title string
-	// Mod   time.Time
-	Cre time.Time
+	Cre   time.Time
 }
 
 type thoughtSorter struct {
