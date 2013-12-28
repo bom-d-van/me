@@ -71,7 +71,7 @@ func GetArticle(params martini.Params) string {
 	sys := info.Sys()
 	if sys != nil {
 		stat := sys.(*syscall.Stat_t)
-		thoughtData.Cre = time.Unix(stat.Ctim.Sec, stat.Ctim.Nsec)
+		thoughtData.Cre = time.Unix(stat.Atim.Sec, stat.Atim.Nsec)
 	} else {
 		thoughtData.Cre = info.ModTime()
 	}
@@ -161,7 +161,7 @@ func GetThoughts() string {
 		sys := info.Sys()
 		if sys != nil {
 			stat := sys.(*syscall.Stat_t)
-			t.Cre = time.Unix(stat.Ctim.Sec, stat.Ctim.Nsec)
+			t.Cre = time.Unix(stat.Atim.Sec, stat.Atim.Nsec)
 		} else {
 			t.Cre = t.Mod
 		}
