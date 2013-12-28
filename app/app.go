@@ -69,14 +69,14 @@ func GetArticle(params martini.Params) string {
 	info, err := os.Stat(artilePath)
 	if err != nil {
 		if !os.IsNotExist(err) {
-			log.Fatal(err)
+			log.Println(err)
 			return ""
 		}
 
 		artilePath = thoughtsPath + "/" + name + "/index.md"
 		info, err = os.Stat(artilePath)
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 			return ""
 		}
 	}
