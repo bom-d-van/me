@@ -116,8 +116,8 @@ type thought struct {
 	// Path  string
 	Name  string
 	Title string
-	Mod   time.Time
-	Cre   time.Time
+	// Mod   time.Time
+	Cre time.Time
 }
 
 type thoughtSorter struct {
@@ -184,7 +184,7 @@ func GetThoughts() string {
 		}
 
 		t.Title = getTitle(t.Name)
-		t.Mod = info.ModTime()
+		// t.Mod = info.ModTime()
 		t.Cre = genCreationTime(path)
 
 		thoughts = append(thoughts, t)
