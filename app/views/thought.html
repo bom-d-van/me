@@ -1,0 +1,23 @@
+{{define "thought"}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{.Title}}</title>
+	<link rel="icon" type="image/png" href="/favicon.png">
+	<link type="text/css" rel="stylesheet" href="/stylesheets/app.css">
+	<link rel="stylesheet" href="/stylesheets/highlight.css">
+	<script src="/javascripts/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+	<article>
+		{{template "float_me"}}
+		<section class="edit-info">
+			<div><span class="fl info-label">Wrote At: </span><span class="fr">{{fmtAt .Cre}}</span></div>
+			{{if .Mod}}<div><span class="fl info-label">Modified At: </span><span class="fr">{{fmtAt .Mod}}</span></div>{{end}}
+		</section>
+		{{.Content}}
+	</article>
+</body>
+</html>
+{{end}}

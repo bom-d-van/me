@@ -1,0 +1,109 @@
+body {
+	color: #444;
+	font-size: 17px;
+	line-height: 10px;
+	font: 16px/1.5 "Roboto Slab", 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin-bottom: 100px;
+}
+
+body a {
+	color: #2a6496;
+}
+
+article {
+	width: 42%;
+	margin: 0 auto;
+	margin-top: 55px;
+}
+
+article h1 {
+	border-bottom: 2px #333 solid;
+	padding-bottom: 25px;
+	font-size: 30px;
+}
+
+article p code {
+	background-color: #1d1f21;
+	color: #c5c8c6;
+	padding: 2px 5px;
+	border-radius: 8px;
+}
+
+article pre code {
+	/*background-color: #444;*/
+	/*color: white;*/
+	padding: 16px;
+	border-radius: 5px;
+	margin: 20px 0;
+	display: block;
+	font-size: 14px;
+	word-wrap: break-word;
+}
+
+article img {
+	width: 99%;
+	border: solid 1px #444;
+}
+
+.portrait-section {
+	float: left;
+	width: 200px;
+	margin-left: -220px;
+}
+
+.portrait-section img {
+	width: 50%;
+	border-radius: 50%;
+	border-width: 0;
+	margin: 0 auto;
+	display: block;
+}
+
+.portrait-section p {
+	text-align: center;
+	margin: 0;
+	color: #999;
+}
+
+/*article.about h1 {
+	border-bottom: none;
+	color: #777;
+	font-size: 2.5em;
+	padding-bottom: 0;
+}
+*/
+/*article.about h2 {
+	border-bottom: 1px #777 solid;
+	color: #777;
+	margin-bottom: 35px;
+}
+*/
+
+.thoughts-link {
+	padding-right: 15px;
+	margin-top: 10px;
+	float: right;
+}
+
+article.thoughts ul {
+	list-style: none;
+	padding: 0;
+}
+
+.edit-info {
+	float: right;
+	width: 225px;
+	color: #666;
+}
+
+.edit-info .info-label {
+	font-weight: bold;
+}
+
+.fr {
+	float: right;
+}
+
+.fl {
+	float: left;
+}

@@ -1,0 +1,30 @@
+{{define "thoughts"}}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Thoughts</title>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/app.css">
+	<link rel="stylesheet" href="/stylesheets/highlight.css">
+	<script src="/javascripts/highlight.pack.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+	<article class="thoughts">
+		{{template "float_me"}}
+		<h1>Thoughts</h1>
+		{{$thoughtMap := .ThoughtMap}}
+		{{range $year := .Years}}
+			<ul>
+				<h2>{{$year}}</h2>
+				{{range $t := index $thoughtMap $year}}
+					<li>
+						<span>{{fmtOn $t.Cre}}</span>
+						<span><a href="/thoughts/{{$t.Name}}">{{$t.Title}}</a></span>
+					</li>
+				{{end}}
+			</ul>
+		{{end}}
+	</article>
+</body>
+</html>
+{{end}}
