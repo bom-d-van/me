@@ -30,7 +30,6 @@ func init() {
 		log.Panic(err)
 	}
 
-	println("something")
 	for _, item := range strings.Split(string(creationInfoBytes), "\n") {
 		if item == "" {
 			continue
