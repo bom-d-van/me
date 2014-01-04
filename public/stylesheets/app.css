@@ -45,6 +45,14 @@ article img {
 	border: solid 1px #444;
 }
 
+article blockquote {
+	padding-left: 10px;
+	margin: 0;
+	border-left: 2px solid gray;
+	color: gray;
+	font-style: italic;
+}
+
 .portrait-section {
 	float: left;
 	width: 200px;
@@ -65,20 +73,6 @@ article img {
 	color: #999;
 }
 
-/*article.about h1 {
-	border-bottom: none;
-	color: #777;
-	font-size: 2.5em;
-	padding-bottom: 0;
-}
-*/
-/*article.about h2 {
-	border-bottom: 1px #777 solid;
-	color: #777;
-	margin-bottom: 35px;
-}
-*/
-
 .thoughts-link {
 	padding-right: 15px;
 	margin-top: 10px;
@@ -94,7 +88,7 @@ article.thoughts ul {
 	float: right;
 	width: 185px;
 	color: #666;
-	margin-top: 30px;
+	margin-top: 7px;
 	font-size: 13px;
 }
 
