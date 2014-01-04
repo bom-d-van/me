@@ -42,7 +42,6 @@ func init() {
 		if err != nil {
 			log.Panic(err)
 		}
-		log.Println(tim)
 		creationInfo[segs[0]] = tim
 	}
 }
@@ -173,6 +172,13 @@ func GetThoughts() string {
 			path = path + "/index.md"
 			info, err = os.Stat(path)
 			if err != nil {
+				if os.IsNotExist(err) {
+					return nil
+				}
+
+				if log != nil {
+					log.Println(err)
+				}
 				return err
 			}
 			t.Name = name
